@@ -1,0 +1,17 @@
+variant: fcos
+version: 1.4.0
+passwd:
+  users:
+    - name: lyca
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvFgPMBrQ8m6CPuQbPQhsNQoI8u/Nm5CdKnyBFuP00+JOcEfM6ZAfPbb83NSFmwNTiEgpkXUWTIwom5RSxVWzZuZ5S7TgRgbgMy26frcAm9rQDmRGJPM+UtcSNk7C/JSbE7KeBl2zysfEJ0GAZhkUHhZ20QQ3qB2Eq2kFx1WaUxAc/bAU7bG+6AsXzb12fg1n92Cgv2gyRsDXfyLECrQTYa2TI9eLUedCzOD4YKqVRrOGQP1oFYnmgctc7mkIMCVH9J5yvsnb/jf1KimkPn+CIio8K8bDEgtnFnawBuZC8bda+IIoth1ZcXeqky1XXGlvag6a11ZAr/fUhMf6C/pmb lyca@r4d1um.org
+systemd:
+  units:
+    - name: serial-getty@ttyS0.service
+      dropins:
+        - name: autologin.conf
+          contents: |
+            [Service]
+            TTYVTDisallocate=no
+            ExecStart=
+            ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
